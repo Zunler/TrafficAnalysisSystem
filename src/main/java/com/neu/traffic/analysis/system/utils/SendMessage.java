@@ -123,7 +123,7 @@ public class SendMessage implements Runnable {
 
             //总车流量数据
 
-            if (totalCarFlow != null) {
+            if (totalCarFlow!=null&&totalCarFlow.size()!= 0 ){
                 CarFlow item = totalCarFlow.get(0);
                 try {
                     res.put("totalCarFlow", item.getCount());
@@ -134,8 +134,10 @@ public class SendMessage implements Runnable {
 
             }
 
-            if (carFlow != null) {
+            if (carFlow!=null&&carFlow.size()!= 0) {
+
                 CarFlow item = carFlow.get(0);
+                System.out.println(item==null);
                 try {
                     res.put("carFlow", item.getCount());
                 } catch (JSONException e) {
@@ -147,10 +149,12 @@ public class SendMessage implements Runnable {
 
 
             //卡口分类数据
+
             if (monitorFlow != null && currentIndex[3] < monitorFlow.size()) {
                 JSONObject monitorFlowJson = new JSONObject();
                 int count = 0;
-                for (int i = currentIndex[3]; i < analyzeCarByLicense.size(); i++) {
+
+                for (int i = currentIndex[3]; i < monitorFlow.size(); i++) {
                     count++;
                     //只获取最新9个卡口的数量
                     if (count > 9) {

@@ -77,7 +77,7 @@ function map(map_data) {
                 coordinateSystem: 'geo',
                 data: convertData(map_data),
                 symbolSize: function (val) {
-                    return val[2] ;
+                    return val[2]*2 ;
                 },
                 label: {
                     normal: {

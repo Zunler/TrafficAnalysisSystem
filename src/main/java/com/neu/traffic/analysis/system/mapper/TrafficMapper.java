@@ -11,7 +11,9 @@
 package com.neu.traffic.analysis.system.mapper;
 
 import com.neu.traffic.analysis.system.model.*;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -25,6 +27,7 @@ import java.util.List;
  * @since 1.0.0
  */
 @Component
+@Mapper
 public interface TrafficMapper {
     /***
      * 获取一小时内的牌照分类信息
@@ -54,7 +57,7 @@ public interface TrafficMapper {
      * 获取一小时内的卡口分类信息
      */
 
-    @Select("select * from monitor_flow where monitor_time > DATE_SUB(NOW(),INTERVAL  1 HOUR)")
+    @Select("select * from monitor_flow where monitor_time > DATE_SUB(NOW(),INTERVAL  1 HOUR) ORDER BY monitor_time desc")
     List<MonitorFlow> getMonitorFlow();
     /***
      * 获取一小时内的车速前十信息
